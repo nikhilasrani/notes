@@ -1,8 +1,5 @@
-const validator = require("validator");
 const getNotes = require("./notes.js");
+const chalk = require("chalk");
+const log = console.log;
 
-const msg = getNotes();
-
-console.log(msg);
-
-console.log(validator.isEmail("test@test.org"));
+log(chalk.green("Success"));
