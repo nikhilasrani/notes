@@ -1,14 +1,11 @@
-const notes = require("./notes.js");
 const chalk = require("chalk");
 const yargs = require("yargs");
+const notes = require("./notes.js");
 
-//Customize yargs version
+// Customize yargs version
 yargs.version("1.1.0");
 
-//add, remove, read and list out all notes/individual notes
-
 // Create add command
-
 yargs.command({
   command: "add",
   describe: "Add a new note",
@@ -29,30 +26,37 @@ yargs.command({
   }
 });
 
-// Create a remove command
+// Create remove command
 yargs.command({
   command: "remove",
   describe: "Remove a note",
-  handler: function() {
-    console.log("Removing a note");
+  builder: {
+    title: {
+      describe: "Note title",
+      demandOption: true,
+      type: "string"
+    }
+  },
+  handler: function(argv) {
+    notes.removeNote(argv.title);
   }
 });
 
-// Create a list command
+// Create list command
 yargs.command({
   command: "list",
-  describe: "Listing all existing notes",
+  describe: "List your notes",
   handler: function() {
-    console.log("Listing all existing notes");
+    console.log("Listing out all notes");
   }
 });
 
-// Create a read command
+// Create read command
 yargs.command({
   command: "read",
-  describe: "Opens the chosen note",
+  describe: "Read a note",
   handler: function() {
-    console.log("Opens the chosen note");
+    console.log("Reading a note");
   }
 });
 
